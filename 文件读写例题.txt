@@ -1,0 +1,68 @@
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
+public class t2 extends JFrame implements ActionListener 
+{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+JTextField txtName= new JTextField(15);
+JTextField txtPwd= new JTextField(15);
+JLabel labName= new JLabel("帐号");
+JLabel labPwd = new JLabel("密码");
+JButton btnLogin= new JButton("登录");
+JButton btnCancel;
+JComboBox<String> combo= new JComboBox<String>();
+
+
+public t2()
+{
+
+	JFrame f=new JFrame("用户登录");
+	Container c=f.getContentPane();
+	f.setSize(250,130);
+	combo.addItem("教师");
+	combo.addItem("学生");
+	btnLogin.addActionListener(this);
+	c.setLayout(new FlowLayout());
+	c.add(labName);
+	c.add(txtName);
+	c.add(labPwd);
+	c.add(txtPwd);
+	c.add(combo);
+	c.add(btnLogin);
+	c.setVisible(true);
+	c.setSize(250,150);
+	f.setLocationRelativeTo(null);
+	f.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+	f.setVisible(true);
+}
+public static void main(String[] args) {new t2();}
+
+
+@Override
+public void actionPerformed(ActionEvent e)
+{
+	// TODO Auto-generated method stub
+
+	if(e.getSource()==btnLogin)
+	{
+		String item = (String)combo.getSelectedItem();
+		if  (
+				(
+						item=="教师"&&txtName.getText().equals("teacher")
+						&&txtPwd.getText().equals("teacher")
+				)
+				||
+				(
+						item=="学生"&&txtName.getText().equals("student")
+						&&txtPwd.getText().equals("student")
+				)
+			)
+			JOptionPane.showMessageDialog(null, item+"登录成功");
+		else
+			JOptionPane.showMessageDialog(null, item+"用户名不存在或者密码不正确");
+	}
+}
+}
